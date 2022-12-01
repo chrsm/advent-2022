@@ -1,0 +1,42 @@
+input = ''
+fp = io.open '01_input.txt'
+with fp
+  v = \read '*a'
+  \close!
+  input = v
+input = input\gmatch "%g*\n"
+
+elves =
+  n: 1
+  t: {}
+  m:
+    * 0
+    * 0
+    * 0
+
+for v in input
+  unless elves.t[elves.n]
+    elves.t[elves.n] = 0
+
+  if v == "\n"
+    s = elves.t[elves.n]
+    if s > elves.m[1]
+      elves.m[1] = s
+    elseif s > elves.m[2]
+      elves.m[2] = s
+    elseif s > elves.m[3]
+      elves.m[3] = s
+
+    table.sort elves.m
+
+    elves.n += 1
+
+    continue
+
+  elves.t[elves.n] += v
+
+s = 0
+for i,v in ipairs elves.m
+  s += v
+
+print s

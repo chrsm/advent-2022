@@ -1,10 +1,6 @@
-input = ''
-fp = io.open '01_input.txt'
-with fp
-  v = \read '*a'
-  \close!
-  input = v
-input = input\gmatch "%g*\n"
+import 'util'
+
+input = (util.read_all '01_input.txt')\gmatch "%g*\n"
 
 elves =
   n: 1

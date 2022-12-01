@@ -1,0 +1,12 @@
+export default {
+  read_all: (file) ->
+    input = ''
+
+    fp = io.open file
+    with fp
+      v = \read '*a'
+      \close!
+      input = v
+
+    input
+}

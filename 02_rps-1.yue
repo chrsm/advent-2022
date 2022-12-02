@@ -1,0 +1,54 @@
+import 'util'
+
+g = {}
+g =
+  pts: 0
+
+  pt:
+    r: 1
+    p: 2
+    s: 3
+
+  m:
+    A: 'r'
+    B: 'p'
+    C: 's'
+    X: 'r'
+    Y: 'p'
+    Z: 's'
+
+  win: 6
+  loss: 0
+  draw: 3
+
+  eval: (a, b) ->
+    a = g.pt[a]
+    b = g.pt[b]
+
+    pt = b
+
+    if (a == 1 and b == 2) or (a == 2 and b == 3) or (a == 3 and b == 1)
+      pt += 6 -- win
+    elseif a == b -- draw
+      pt += 3
+
+    pt
+
+
+input = util.read_all '02_01_input.txt'
+input = input\gmatch "[^\n]*\n"
+
+for v in input
+  opp, me = v\match '(%g+)%s+(%g+)'
+  print opp,me
+
+  -- check win, loss, draw
+  opp = g.m[opp]
+  me = g.m[me]
+  print opp,me
+
+  g.pts += g.eval opp, me
+
+  print ''
+
+print g.pts

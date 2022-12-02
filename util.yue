@@ -9,4 +9,10 @@ export default {
       input = v
 
     input
+
+  each: (v) ->
+    t = {}
+    for v in v\gmatch m
+      t[] = v
+    t
 }
